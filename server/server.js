@@ -71,7 +71,9 @@ app.get("/todo",(req,res)=>{
 })
 
 app.delete("/todo",(req,res)=>{
-    
+    todo.findByIdAndRemove(req.params.id).then(()=>{
+        
+    })
 })
 
 
