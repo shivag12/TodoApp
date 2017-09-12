@@ -70,6 +70,11 @@ app.get("/todo",(req,res)=>{
     })
 })
 
+app.delete("/todo",(req,res)=>{
+    
+})
+
+
 //Inserting document
 app.post("/user",(req,res)=>{  
     
