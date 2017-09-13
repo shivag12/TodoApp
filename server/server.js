@@ -70,6 +70,24 @@ app.get("/todo",(req,res)=>{
     })
 })
 
+//Delete a note by ID
+app.delete("/todo",(req,res)=>{
+    if(!ObjectID.isValid(req.query.id)){
+        return res.status(401).send({
+            err : "Invalid ID"
+        })
+    }
+    todo.findByIdAndRemove(req.query.id).then((result)=>{
+        if(!result){
+            return res.status(401).send({err:"No records found"});
+        }
+        res.status(200).send("Note removed successfully..!");
+    }).catch((e)=>{
+        res.status(404);
+    })
+})
+
+
 //Inserting document
 app.post("/user",(req,res)=>{  
     
