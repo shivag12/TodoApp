@@ -9,9 +9,10 @@ var todo =  mongoose.model("todo",{
         trim : true
     },
     completedBy : {
-        type : String,
+        type : Boolean,
         minlength : 1,
-        //required : true,
+        default : "false",
+        required : true,
         trim : true
     },
     completedAt : {

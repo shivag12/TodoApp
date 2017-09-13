@@ -87,6 +87,29 @@ app.delete("/todo",(req,res)=>{
     })
 })
 
+//Updating the note by ID
+app.patch("/todo",(req,res)=>{
+    var body = {
+        text : req.body.text,
+        completedBy : req.body.completedBy
+    };
+    if(body.completedBy){
+        body.completedAt = Date.now().toString();
+    }
+    
+    if(!ObjectID.isValid(req.body.id)){
+        return res.status(401).send({err:"Invalid Id"});
+    }   
+    todo.findByIdAndUpdate(req.body.id,body).then((todo)=>{
+        if(!todo){
+            return res.status(401).send({});
+        }
+        res.status(200).send("Updated the record successfully..!!");
+    }).catch((e)=>{
+        res.status(400);
+    })
+})
+
 
 //Inserting document
 app.post("/user",(req,res)=>{  
